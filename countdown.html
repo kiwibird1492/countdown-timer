@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會考倒數計時器</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f8ff;
-            padding-top: 100px;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-        #countdown {
-            font-size: 2em;
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>會考倒數計時器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding-top: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    #school, #blessing, #cheer {
+      font-size: 1.5em;
+      margin: 5px 0;
+    }
+    #countdown {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-    <h1>距離會考還有：</h1>
-    <div id="countdown"></div>
+  <h1>會考倒數計時器</h1>
+  <div id="school">崙背國中</div>
+  <div id="cheer">九年級同學加油！</div>
+  
+  <div id="countdown"></div>
 
-    <script>
-        // 設定目標日期：114年5月17日 => 西元2025年5月17日
-        const targetDate = new Date('2025-05-17T00:00:00');
+  <script>
+    const targetDate = new Date('2025-05-17T00:00:00');
 
-        function updateCountdown() {
-            const now = new Date();
-            const diff = targetDate - now;
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
 
-            if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = "考試開始了！加油！";
-                clearInterval(timer);
-                return;
-            }
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = "考試開始了！加油！";
+        clearInterval(timer);
+        return;
+      }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-            document.getElementById('countdown').innerHTML = 
-                `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
-        }
+      document.getElementById('countdown').innerHTML = 
+        `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+    }
 
-        const timer = setInterval(updateCountdown, 1000);
-        updateCountdown();
-    </script>
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
